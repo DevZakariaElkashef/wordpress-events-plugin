@@ -1,5 +1,7 @@
 <?php
 
+namespace Events;
+
 /**
  * Register all actions and filters for the plugin
  *
@@ -21,7 +23,7 @@
  * @subpackage events/includes
  * @author     Your Name <email@example.com>
  */
-class events_Loader {
+class Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

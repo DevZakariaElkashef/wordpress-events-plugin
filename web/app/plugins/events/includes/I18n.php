@@ -1,5 +1,7 @@
 <?php
 
+namespace Events;
+
 /**
  * Define the internationalization functionality
  *
@@ -24,7 +26,7 @@
  * @subpackage events/includes
  * @author     Your Name <email@example.com>
  */
-class events_i18n {
+class I18n {
 
 
 	/**

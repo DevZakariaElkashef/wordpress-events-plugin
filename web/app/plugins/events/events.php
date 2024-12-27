@@ -1,5 +1,9 @@
 <?php
 
+use Events\Events;
+use Events\Activator;
+use Events\Deactivator;
+
 /**
  * The plugin bootstrap file
  *
@@ -13,11 +17,11 @@
  * @package           events
  *
  * @wordpress-plugin
- * Plugin Name:       WordPress Plugin Boilerplate
+ * Plugin Name:       Event Management Plugin
  * Plugin URI:        http://example.com/events-uri/
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This is a management for custom post type events
  * Version:           1.0.0
- * Author:            Your Name or Your Company
+ * Author:            Zakaria Elkashef
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
@@ -42,8 +46,7 @@ define( 'events_VERSION', '1.0.0' );
  * This action is documented in includes/class-events-activator.php
  */
 function activate_events() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-events-activator.php';
-	events_Activator::activate();
+	Activator::activate();
 }
 
 /**
@@ -51,8 +54,7 @@ function activate_events() {
  * This action is documented in includes/class-events-deactivator.php
  */
 function deactivate_events() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-events-deactivator.php';
-	events_Deactivator::deactivate();
+	Deactivator::deactivate();
 }
 
 register_activation_hook( __FILE__, 'activate_events' );
@@ -62,7 +64,6 @@ register_deactivation_hook( __FILE__, 'deactivate_events' );
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-events.php';
 
 /**
  * Begins execution of the plugin.
@@ -75,7 +76,7 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-events.php';
  */
 function run_events() {
 
-	$plugin = new events();
+	$plugin = new Events();
 	$plugin->run();
 
 }

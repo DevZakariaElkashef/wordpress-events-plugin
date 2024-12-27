@@ -1,6 +1,6 @@
 <?php
 
-namespace Event\Admin;
+namespace Events\Admin;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -22,8 +22,7 @@ namespace Event\Admin;
  * @subpackage events/admin
  * @author     Your Name <email@example.com>
  */
-class Admin {
-
+class EventAdmin {
 	/**
 	 * The ID of this plugin.
 	 *

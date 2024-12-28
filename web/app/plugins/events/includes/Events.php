@@ -5,6 +5,7 @@ namespace Events;
 use Events\Core\PostTypes;
 use Events\Core\Taxonomies;
 use Events\Admin\EventAdmin;
+use Events\Admin\EventOption;
 use Events\Core\CustomFields;
 use Events\Core\CustomColumns;
 use Events\Public\EventPublic;
@@ -142,7 +143,7 @@ class Events
 		new Taxonomies(); // add taxonomies for my cutom post type
 		new PostTypes(); // add events post types
 		new CustomFields(); // add custom fields for the events
-		new CustomColumns(); 
+		new CustomColumns();  // display cutom column in the event table
 	}
 
 	/**
@@ -159,6 +160,9 @@ class Events
 
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
 		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
+
+		new EventOption(); // add option pages
+
 	}
 
 	/**

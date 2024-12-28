@@ -40,6 +40,19 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
+// if the Advanced Custom Fields (ACF) plugin is not installed stop the code and return warning
+if (!function_exists('acf_add_local_field_group')) {
+    add_action('admin_notices', function () {
+        echo '<div class="notice notice-error"><p>';
+        echo __('The Advanced Custom Fields plugin is required for the Events plugin to work properly. Please install and activate it.', 'events');
+        echo '</p></div>';
+    });
+
+    return;
+}
+
+
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org

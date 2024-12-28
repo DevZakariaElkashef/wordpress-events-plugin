@@ -3,6 +3,9 @@
 namespace Events;
 
 use Events\Admin\EventAdmin;
+use Events\Core\CustomFields;
+use Events\Core\PostTypes;
+use Events\Core\Taxonomies;
 use Events\Public\EventPublic;
 
 /**
@@ -84,6 +87,7 @@ class Events
 		$this->load_dependencies();
 		$this->set_locale();
 		$this->define_admin_hooks();
+		$this->define_core_hooks();
 		$this->define_public_hooks();
 	}
 
@@ -123,6 +127,20 @@ class Events
 		$plugin_i18n = new I18n();
 
 		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
+	}
+
+	/**
+	 * Register all of the hooks related to the core area functionality
+	 * of the plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 */
+	private function define_core_hooks()
+	{
+		new Taxonomies(); // add taxonomies for my cutom post type
+		new PostTypes(); // add events post types
+		new CustomFields(); // add custom fields for the events
 	}
 
 	/**

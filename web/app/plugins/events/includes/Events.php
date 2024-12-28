@@ -10,6 +10,7 @@ use Events\Core\CustomColumns;
 use Events\Public\EventPublic;
 use Events\Admin\EventOption;
 use Events\Admin\Permalink;
+use Events\Core\RestApi;
 
 /**
  * The file that defines the core plugin class
@@ -146,6 +147,7 @@ class Events
 		new CustomFields(); // add custom fields for the events
 		new CustomColumns();  // display cutom column in the event table
 		new Permalink(); // change permalink structure to be post name
+		new RestApi(); // add api for search for test only authentication user can search
 	}
 
 	/**

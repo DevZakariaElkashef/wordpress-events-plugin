@@ -1,6 +1,6 @@
 <?php
 
-namespace Events\Admin;
+namespace Events\Core;
 
 class Taxonomies
 {

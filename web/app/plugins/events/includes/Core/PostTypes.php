@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Events\Admin;
+namespace Events\Core;
 
 class PostTypes
 {

@@ -129,16 +129,8 @@ class EventPublic
 				'menu-item-url' => home_url('/'),
 				'menu-item-status' => 'publish'
 			);
-			$home_id = wp_update_nav_menu_item($menu_id, 0, $home_page);
-
-			// Add the "Events" menu item
-			$events_page = array(
-				'menu-item-title' => 'Events',
-				'menu-item-url' => get_post_type_archive_link('event'), // Correct usage
-				'menu-item-status' => 'publish'
-			);
+			wp_update_nav_menu_item($menu_id, 0, $home_page);
 			
-			$events_id = wp_update_nav_menu_item($menu_id, 0, $events_page);
 		} else {
 			// If menu already exists, get its ID
 			$menu_id = $existing_menu->term_id;

@@ -21,7 +21,7 @@ class RestApi
         register_rest_route('events/v1', '/search/', [
             'methods' => 'GET',
             'callback' => [$this, 'search_events'],
-            'permission_callback' => '',
+            'permission_callback' => [$this, 'check_user_permission'],
         ]);
     }
 
@@ -66,7 +66,7 @@ class RestApi
     {
         // Ensure the user is logged in
         if (!is_user_logged_in()) {
-            return new \WP_Error('rest_forbidden', __('You must be logged in to access this resource', 'events'), ['status' => 403]);
+            return $this->sendResponse(__('You must be logged in to access this resource', 'events'), null, 403);
         }
         return true; // Allow access if the user is logged in
     }

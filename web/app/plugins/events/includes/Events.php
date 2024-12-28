@@ -9,6 +9,7 @@ use Events\Core\CustomFields;
 use Events\Core\CustomColumns;
 use Events\Public\EventPublic;
 use Events\Admin\EventOption;
+use Events\Admin\Permalink;
 
 /**
  * The file that defines the core plugin class
@@ -144,6 +145,7 @@ class Events
 		new PostTypes(); // add events post types
 		new CustomFields(); // add custom fields for the events
 		new CustomColumns();  // display cutom column in the event table
+		new Permalink(); // change permalink structure to be post name
 	}
 
 	/**

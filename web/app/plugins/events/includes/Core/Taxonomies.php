@@ -32,6 +32,8 @@ class Taxonomies
             'show_ui'           => true,
             'show_admin_column' => true,
             'query_var'         => true,
+            'show_in_nav_menus' => true,
+            'public' => true,
             'rewrite'           => ['slug' => 'event-category'],
         ]);
     }
@@ -61,6 +63,8 @@ class Taxonomies
             'show_ui'           => true,
             'show_admin_column' => false,
             'query_var'         => true,
+            'show_in_nav_menus' => true,
+            'public' => true,
             'rewrite'           => ['slug' => 'event-tag'],
         ]);
     }

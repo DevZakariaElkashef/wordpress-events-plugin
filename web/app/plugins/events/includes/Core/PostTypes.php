@@ -50,6 +50,7 @@ class PostTypes
             'supports'            => ['title'], 
             'taxonomies'          => ['event_category', 'event_tag'],
             'show_in_menu'        => true,
+            'show_in_nav_menus'   => true
         ];
         register_post_type('event', $args);
         

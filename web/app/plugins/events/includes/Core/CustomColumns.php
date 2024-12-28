@@ -7,17 +7,17 @@ class CustomColumns
     public function __construct()
     {
         // Add custom columns to event post list
-        add_filter('manage_edit-event_columns', array($this, 'add_event_columns'));
+        add_filter('manage_edit-event_columns', [$this, 'add_event_columns']);
         // Populate custom columns with field data
-        add_action('manage_event_posts_custom_column', array($this, 'populate_event_columns'), 10, 2);
+        add_action('manage_event_posts_custom_column', [$this, 'populate_event_columns'], 10, 2);
         // Make columns sortable
-        add_filter('manage_edit-event_sortable_columns', array($this, 'make_event_date_sortable'));
+        add_filter('manage_edit-event_sortable_columns', [$this, 'make_event_date_sortable']);
 
         // Add event filter dropdown
-        add_action('restrict_manage_posts', array($this, 'add_event_filters'));
+        add_action('restrict_manage_posts', [$this, 'add_event_filters']);
         
         // Modify query to filter by selected date
-        add_action('pre_get_posts', array($this, 'filter_events_by_date'));
+        add_action('pre_get_posts', [$this, 'filter_events_by_date']);
     }
 
     // Add custom columns to event post list
@@ -132,7 +132,6 @@ class CustomColumns
                     break;
                 case 'all':
                 default:
-                    // No filter applied
                     break;
             }
 

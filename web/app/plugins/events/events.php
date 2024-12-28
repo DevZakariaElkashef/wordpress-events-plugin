@@ -34,6 +34,12 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Prevent direct access to this file if WordPress is not loaded.
+if ( ! defined( 'ABSPATH' ) ) {
+	die;
+}
+
+
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org

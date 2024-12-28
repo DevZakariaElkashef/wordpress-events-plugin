@@ -2,10 +2,11 @@
 
 namespace Events;
 
-use Events\Admin\EventAdmin;
-use Events\Core\CustomFields;
 use Events\Core\PostTypes;
 use Events\Core\Taxonomies;
+use Events\Admin\EventAdmin;
+use Events\Core\CustomFields;
+use Events\Core\CustomColumns;
 use Events\Public\EventPublic;
 
 /**
@@ -141,6 +142,7 @@ class Events
 		new Taxonomies(); // add taxonomies for my cutom post type
 		new PostTypes(); // add events post types
 		new CustomFields(); // add custom fields for the events
+		new CustomColumns(); 
 	}
 
 	/**

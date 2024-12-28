@@ -47,7 +47,7 @@ class PostTypes
             'public'              => true,
             'has_archive'         => true,
             'rewrite'             => ['slug' => 'events'],
-            'supports'            => ['title', 'editor'], 
+            'supports'            => ['title'], 
             'taxonomies'          => ['event_category', 'event_tag'],
             'show_in_menu'        => true,
         ];

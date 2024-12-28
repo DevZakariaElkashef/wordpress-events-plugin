@@ -18,6 +18,13 @@ class CustomFields
                 'title' => __('Event Details', 'events'),
                 'fields' => [
                     [
+                        'key' => 'field_event_description',
+                        'label' => __('Description', 'events'),
+                        'name' => 'event_description',
+                        'type' => 'wysiwyg',
+                        'required' => 1,
+                    ],
+                    [
                         'key' => 'field_event_date',
                         'label' => __('Event Date', 'events'),
                         'name' => 'event_date',
@@ -45,13 +52,7 @@ class CustomFields
                         'return_format' => 'url',
                         'required' => 0,
                     ],
-                    [
-                        'key' => 'field_event_description',
-                        'label' => __('Description', 'events'),
-                        'name' => 'event_description',
-                        'type' => 'wysiwyg',
-                        'required' => 1,
-                    ],
+                    
                 ],
                 'location' => [
                     [

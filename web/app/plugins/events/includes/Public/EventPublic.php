@@ -22,7 +22,8 @@ namespace Events\Public;
  * @subpackage events/includes/Public
  * @author     Your Name <email@example.com>
  */
-class EventPublic {
+class EventPublic
+{
 
 	/**
 	 * The ID of this plugin.
@@ -49,11 +50,15 @@ class EventPublic {
 	 * @param      string    $events       The name of the plugin.
 	 * @param      string    $version    The version of this plugin.
 	 */
-	public function __construct( $events, $version ) {
+	public function __construct($events, $version)
+	{
 
 		$this->events = $events;
 		$this->version = $version;
 
+		// Register a new menu location
+		add_action('after_setup_theme', [$this, 'register_main_menu']);
+		add_action('after_switch_theme', [$this, 'create_main_menu']);
 	}
 
 	/**
@@ -61,7 +66,8 @@ class EventPublic {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -75,8 +81,7 @@ class EventPublic {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->events, plugin_dir_url( __FILE__ ) . 'css/events-public.css', array(), $this->version, 'all' );
-
+		wp_enqueue_style($this->events, plugin_dir_url(__FILE__) . 'css/events-public.css', array(), $this->version, 'all');
 	}
 
 	/**
@@ -84,7 +89,8 @@ class EventPublic {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts()
+	{
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -98,8 +104,49 @@ class EventPublic {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->events, plugin_dir_url( __FILE__ ) . 'js/events-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script($this->events, plugin_dir_url(__FILE__) . 'js/events-public.js', array('jquery'), $this->version, false);
 	}
 
+	function register_main_menu()
+	{
+		register_nav_menu('main_menu', __('Main Menu'));
+	}
+
+	function create_main_menu()
+	{
+		// Check if the menu exists
+		$menu_name = 'Main Menu';
+		$existing_menu = wp_get_nav_menu_object($menu_name);
+
+		// Create the menu if it doesn't exist
+		if (!$existing_menu) {
+			// Create the menu and get its ID
+			$menu_id = wp_create_nav_menu($menu_name);
+
+			// Add the "Home" menu item
+			$home_page = array(
+				'menu-item-title' => 'Home',
+				'menu-item-url' => home_url('/'),
+				'menu-item-status' => 'publish'
+			);
+			$home_id = wp_update_nav_menu_item($menu_id, 0, $home_page);
+
+			// Add the "Events" menu item
+			$events_page = array(
+				'menu-item-title' => 'Events',
+				'menu-item-url' => get_post_type_archive_link('event'), // Correct usage
+				'menu-item-status' => 'publish'
+			);
+			
+			$events_id = wp_update_nav_menu_item($menu_id, 0, $events_page);
+		} else {
+			// If menu already exists, get its ID
+			$menu_id = $existing_menu->term_id;
+		}
+
+		// Assign the created or existing menu to the 'main_menu' theme location
+		$locations = get_theme_mod('nav_menu_locations', array()); // Get current menu locations
+		$locations['main_menu'] = $menu_id; // Set the 'main_menu' location to our menu's ID
+		set_theme_mod('nav_menu_locations', $locations);
+	}
 }

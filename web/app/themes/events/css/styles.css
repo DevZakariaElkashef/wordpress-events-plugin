@@ -10824,3 +10824,26 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+#main-nav {
+  /* Custom styling for the <ul> element */
+  list-style: none;
+  padding: 0;
+}
+
+#main-nav .nav-item {
+  /* Custom styling for the <li> elements */
+  margin: 0 15px;
+}
+
+#main-nav .nav-link {
+  /* Custom styling for the <a> elements (links) */
+  text-decoration: none;
+  font-weight: bold;
+  color: #007bff;
+}
+
+#main-nav .nav-link:hover {
+  /* Custom hover effect for links */
+  color: #0056b3;
+}

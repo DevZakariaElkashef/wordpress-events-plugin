@@ -16,3 +16,5 @@ function events_theme_assets()
 
 // Hook the function to the 'wp_enqueue_scripts' action
 add_action('wp_enqueue_scripts', 'events_theme_assets');
+
+

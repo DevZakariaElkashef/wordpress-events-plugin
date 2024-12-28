@@ -5,10 +5,10 @@ namespace Events;
 use Events\Core\PostTypes;
 use Events\Core\Taxonomies;
 use Events\Admin\EventAdmin;
-use Events\Admin\EventOption;
 use Events\Core\CustomFields;
 use Events\Core\CustomColumns;
 use Events\Public\EventPublic;
+use Events\Admin\EventOption;
 
 /**
  * The file that defines the core plugin class

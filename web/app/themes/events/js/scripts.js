@@ -10,7 +10,13 @@
 document.getElementById('searchInput').addEventListener('input', function () {
     const searchTerm = this.value.trim();
 
-    fetch(`http://events.test:8080/wp-json/events/v1/search?search=${searchTerm}`)
+    fetch(`${eventsApi.rest_url}?search=${searchTerm}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-WP-Nonce': eventsApi.nonce
+            }
+        })
         .then(response => response.json())
         .then(data => {
             displayEvents(data);

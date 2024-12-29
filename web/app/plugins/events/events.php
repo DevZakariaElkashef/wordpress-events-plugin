@@ -30,13 +30,13 @@ use Events\Deactivator;
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (! defined('WPINC')) {
+    die;
 }
 
 // Prevent direct access to this file if WordPress is not loaded.
-if ( ! defined( 'ABSPATH' ) ) {
-	die;
+if (! defined('ABSPATH')) {
+    die;
 }
 
 // if the Advanced Custom Fields (ACF) plugin is not installed stop the code and return warning
@@ -51,21 +51,23 @@ if (!function_exists('acf_add_local_field_group')) {
 }
 
 // Hook into plugin activation
-function force_events_theme_activation() {
+function force_events_theme_activation()
+{
     $parent_theme = 'twentytwentyfive';
     $child_theme = 'events';
-    
+
     // Check if the "Events" theme is not active
     if (get_option('template') !== $child_theme) {
         // Switch to the child theme
-        switch_theme($child_theme);  
+        switch_theme($child_theme);
     }
 }
 
 // Force the theme activation
 force_events_theme_activation();
 
-function activate_events() {
+function activate_events()
+{
     // Call the activation method from Activator class
     Activator::activate();
 }
@@ -74,8 +76,9 @@ function activate_events() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-events-deactivator.php
  */
-function deactivate_events() {
-	Deactivator::deactivate();
+function deactivate_events()
+{
+    Deactivator::deactivate();
 }
 
 
@@ -85,16 +88,23 @@ function deactivate_events() {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'events_VERSION', '1.0.0' );
+define('events_VERSION', '1.0.0');
 
 // Register the activation and deactivation hooks
-register_activation_hook( __FILE__, 'activate_events' );
-register_deactivation_hook( __FILE__, 'deactivate_events' );
+register_activation_hook(__FILE__, 'activate_events');
+register_deactivation_hook(__FILE__, 'deactivate_events');
 
 /**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and public-facing site hooks.
+ * Enable registration
  */
+
+function enable_membership_registration()
+{
+    update_option('users_can_register', 1);
+}
+
+enable_membership_registration();
+
 
 /**
  * Begins execution of the plugin.
@@ -105,7 +115,8 @@ register_deactivation_hook( __FILE__, 'deactivate_events' );
  *
  * @since    1.0.0
  */
-function run_events() {
+function run_events()
+{
     $plugin = new Events();
     $plugin->run();
 }

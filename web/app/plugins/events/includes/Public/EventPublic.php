@@ -104,7 +104,12 @@ class EventPublic
 		 * class.
 		 */
 
-		wp_enqueue_script($this->events, plugin_dir_url(__FILE__) . 'js/events-public.js', array('jquery'), $this->version, false);
+		 wp_enqueue_script($this->events, plugin_dir_url(__FILE__) . 'js/events-public.js', array('jquery'), $this->version, false);
+
+		 wp_localize_script($this->events, 'eventsApi', [
+			 'nonce' => wp_create_nonce('wp_rest'), // Generate a nonce for REST API
+			 'rest_url' => esc_url(rest_url('events/v1/search')), // REST API endpoint URL
+		 ]);
 	}
 
 	function register_main_menu()

@@ -40,7 +40,7 @@ $categories = get_terms($categoriesArgs); // Store result in $categories
                                 <div class="card-body">
                                 <div class="small text-muted"><?= date('Y-m-d', strtotime(get_post_meta(get_the_ID(), 'event_date', true))); ?></div>
                                 <h2 class="card-title h4"><?php the_title(); ?></h2>
-                                    <p class="card-text"><?= esc_html(get_post_meta(get_the_ID(), 'event_description', true)); ?></p>
+                                    <p class="card-text"><?= get_post_meta(get_the_ID(), 'event_description', true); ?></p>
                                     <a class="btn btn-primary" href="<?php the_permalink(); ?>">Read more →</a>
                                 </div>
                             </div>
@@ -67,40 +67,7 @@ $categories = get_terms($categoriesArgs); // Store result in $categories
             </nav> -->
         </div>
         <!-- Side widgets-->
-        <div class="col-lg-4">
-            <!-- Search widget-->
-            <div class="card mb-4">
-                <div class="card-header">Search</div>
-                <div class="card-body">
-                    <div class="input-group">
-                        <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                        <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-                    </div>
-                </div>
-            </div>
-            <!-- Categories widget-->
-            <div class="card mb-4">
-                <div class="card-header">Categories</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <ul class="list-unstyled mb-0">
-                                <?php if (!empty($categories) && !is_wp_error($categories)) : ?>
-                                    <?php foreach ($categories as $category): ?>
-                                        <li><a href="<?= esc_url(get_term_link($category)) ?>"><?= esc_html($category->name) ?></a></li>
-                                    <?php endforeach; ?>
-                                <?php endif; ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Side widget-->
-            <!-- <div class="card mb-4">
-                <div class="card-header">Side Widget</div>
-                <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
-            </div> -->
-        </div>
+        <?php require_once 'sidebar.php' ?>
     </div>
 </div>
 

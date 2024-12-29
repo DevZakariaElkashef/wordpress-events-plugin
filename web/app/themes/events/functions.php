@@ -17,4 +17,11 @@ function events_theme_assets()
 // Hook the function to the 'wp_enqueue_scripts' action
 add_action('wp_enqueue_scripts', 'events_theme_assets');
 
-
+function action_widgets_init()
+{
+    register_sidebar( [
+        'name' => 'sidebar',
+        'id' => 'sidebar1'
+    ] );
+}
+add_action('widgets_init', 'action_widgets_init' );
